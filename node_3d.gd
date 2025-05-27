@@ -17,10 +17,16 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	print(body.name)
 	if "Win" in body.get_groups() :
-		print("you win ")
-		
+		win_sequecne()
 	if "Lose" in body.get_groups():
-		get_tree().reload_current_scene()
-		print("you lose ")
+		crash_sequence()
 		
+
+func win_sequecne()-> void:
+	print("you win ")
+	
+func crash_sequence()-> void:
+	print("you lose ")
+	get_tree().reload_current_scene()

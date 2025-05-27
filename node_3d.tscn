@@ -7,7 +7,7 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_s5ee7"]
 
 [node name="Node3D" type="RigidBody3D"]
-transform = Transform3D(0.971669, 0, 0.236346, 0, 1, 0, -0.236346, 0, 0.971669, 0, 0, 0)
+transform = Transform3D(0.485834, 0, 0.118173, 0, 0.5, 0, -0.118173, 0, 0.485834, 0, 0, 0)
 axis_lock_linear_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
