@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://by0j3a0gc2xkt"]
+
+[ext_resource type="PackedScene" uid="uid://o0ou51n0ywi2" path="res://node_3d.tscn" id="1_jihol"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aakm6"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_rblyw"]
+sky_material = SubResource("ProceduralSkyMaterial_aakm6")
+
+[sub_resource type="Environment" id="Environment_2qepe"]
+background_mode = 2
+sky = SubResource("Sky_rblyw")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2c5l"]
+albedo_color = Color(0.381403, 0.14673, 0.0982106, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahepw"]
+albedo_color = Color(1, 0.239216, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n71iq"]
+albedo_color = Color(0, 0.741176, 0.145098, 1)
+
+[node name="level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2qepe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+use_collision = true
+size = Vector3(1, 2, 9)
+material = SubResource("StandardMaterial3D_s2c5l")
+
+[node name="lauch_pad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54791, 4)
+use_collision = true
+size = Vector3(0.79, 0.07, 0.69)
+material = SubResource("StandardMaterial3D_ahepw")
+
+[node name="landing_pad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.548, -3.94)
+use_collision = true
+size = Vector3(0.79, 0.07, 0.69)
+material = SubResource("StandardMaterial3D_n71iq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.00802053, -0.347034, 0.937818, -0.00296784, 0.937853, 0.347021, -0.999963, -4.65678e-10, -0.00855202, 3.5812, 2.93594, 0.0136283)
+top_level = true
+
+[node name="Node3D" parent="." instance=ExtResource("1_jihol")]
+transform = Transform3D(0.485834, 0, 0.118173, 0, 0.5, 0, -0.118173, 0, 0.485834, 0, 1.8369, 3.94945)

@@ -7,10 +7,18 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_s5ee7"]
 
 [node name="Node3D" type="RigidBody3D"]
+transform = Transform3D(0.971669, 0, 0.236346, 0, 1, 0, -0.236346, 0, 0.971669, 0, 0, 0)
+axis_lock_linear_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_2temp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_nbbyu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("CylinderMesh_s5ee7")
