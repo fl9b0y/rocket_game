@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://by0j3a0gc2xkt"]
+[gd_scene load_steps=10 format=3 uid="uid://bdtmiydkto4t5"]
 
-[ext_resource type="PackedScene" uid="uid://o0ou51n0ywi2" path="res://node_3d.tscn" id="1_jihol"]
-[ext_resource type="Script" path="res://levels/landing_pad.gd" id="1_yrw0c"]
+[ext_resource type="PackedScene" uid="uid://o0ou51n0ywi2" path="res://node_3d.tscn" id="1_abmyb"]
+[ext_resource type="Script" path="res://levels/landing_pad.gd" id="1_yd52x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aakm6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,6 +18,9 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2c5l"]
 albedo_color = Color(0.381403, 0.14673, 0.0982106, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2gkit"]
+albedo_color = Color(0.586664, 0.238733, 0.640164, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pkbl"]
 albedo_color = Color(1, 0.239216, 0, 1)
@@ -40,6 +43,12 @@ use_collision = true
 size = Vector3(1, 2, 9)
 material = SubResource("StandardMaterial3D_s2c5l")
 
+[node name="ground2" type="CSGBox3D" parent="." groups=["Lose"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6716, 0.890839)
+use_collision = true
+size = Vector3(1, 0.977783, 1.37567)
+material = SubResource("StandardMaterial3D_2gkit")
+
 [node name="lauch_pad" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52623, 4)
 use_collision = true
@@ -51,12 +60,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.548, -3.94)
 use_collision = true
 size = Vector3(0.79, 0.07, 0.69)
 material = SubResource("StandardMaterial3D_n71iq")
-script = ExtResource("1_yrw0c")
-next_level = "res://levels/level2.tscn"
+script = ExtResource("1_yd52x")
+next_level = "res://levels/level3.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.00802053, -0.347034, 0.937818, -0.00296784, 0.937853, 0.347021, -0.999963, -4.65678e-10, -0.00855202, 3.5812, 2.93594, 0.0136283)
 top_level = true
 
-[node name="Node3D" parent="." instance=ExtResource("1_jihol")]
+[node name="Node3D" parent="." instance=ExtResource("1_abmyb")]
 transform = Transform3D(0.971669, 0, 0.236346, 0, 1, 0, -0.236346, 0, 0.971669, 0, 2.13614, 3.94945)

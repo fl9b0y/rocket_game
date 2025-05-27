@@ -1,4 +1,5 @@
 extends RigidBody3D
+var is_transitioning : bool = false
 func movement(delta) ->void:
 	if Input.is_action_pressed("ui_up"):
 		apply_central_force(basis.y*delta*1000)
@@ -18,15 +19,26 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	print(body.name)
-	if "Win" in body.get_groups() :
-		win_sequecne()
-	if "Lose" in body.get_groups():
-		crash_sequence()
-		
+	if is_transitioning == false:
+		if "Win" in body.get_groups() :
+			win_sequecne(body.next_level)
+		if "Lose" in body.get_groups():
+			crash_sequence()
+			
 
-func win_sequecne()-> void:
+func win_sequecne(next_level:String)-> void:
 	print("you win ")
+	is_transitioning = true
+	set_process(false)
+	var tween = create_tween()
+	tween.tween_interval(1.0)
+	tween.tween_callback(get_tree().change_scene_to_file.bind(next_level))
+	
 	
 func crash_sequence()-> void:
 	print("you lose ")
-	get_tree().reload_current_scene()
+	is_transitioning = true
+	set_process(false)
+	var tween = create_tween()
+	tween.tween_interval(1.0)
+	tween.tween_callback(get_tree().reload_current_scene)
