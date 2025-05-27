@@ -13,6 +13,8 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 contact_monitor = true
 max_contacts_reported = 10
+linear_damp = 3.03
+angular_damp = 3.03
 script = ExtResource("1_2temp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -22,3 +24,5 @@ shape = SubResource("CylinderShape3D_nbbyu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("CylinderMesh_s5ee7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

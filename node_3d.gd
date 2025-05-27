@@ -13,3 +13,14 @@ func movement(delta) ->void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	movement(delta)
+	
+
+
+func _on_body_entered(body: Node) -> void:
+	if "Win" in body.get_groups() :
+		print("you win ")
+		
+	if "Lose" in body.get_groups():
+		get_tree().reload_current_scene()
+		print("you lose ")
+		
