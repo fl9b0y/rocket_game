@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctfx1l5ul4m86"]
+[gd_scene load_steps=10 format=3 uid="uid://clng3tuyqeyth"]
 
-[ext_resource type="Script" path="res://levels/landing_pad.gd" id="1_5viag"]
-[ext_resource type="PackedScene" uid="uid://o0ou51n0ywi2" path="res://node_3d.tscn" id="2_uubsy"]
+[ext_resource type="Script" path="res://levels/landing_pad.gd" id="1_ur1w5"]
+[ext_resource type="PackedScene" uid="uid://o0ou51n0ywi2" path="res://node_3d.tscn" id="2_k7he8"]
+[ext_resource type="PackedScene" uid="uid://cje3w25rtfc87" path="res://moivng_hazard1.tscn" id="3_t12r8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aakm6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,9 +19,6 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2c5l"]
 albedo_color = Color(0.381403, 0.14673, 0.0982106, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a705"]
-albedo_color = Color(1, 0, 0.0823529, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pkbl"]
 albedo_color = Color(1, 0.239216, 0, 1)
@@ -43,12 +41,6 @@ use_collision = true
 size = Vector3(1, 2, 9)
 material = SubResource("StandardMaterial3D_s2c5l")
 
-[node name="ground2" type="CSGBox3D" parent="." groups=["Lose"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6716, 0.890839)
-use_collision = true
-size = Vector3(1, 0.977783, 1.37567)
-material = SubResource("StandardMaterial3D_5a705")
-
 [node name="lauch_pad" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52623, 4)
 use_collision = true
@@ -60,12 +52,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.548, -3.94)
 use_collision = true
 size = Vector3(0.79, 0.07, 0.69)
 material = SubResource("StandardMaterial3D_n71iq")
-script = ExtResource("1_5viag")
-next_level = "res://levels/level4.tscn"
+script = ExtResource("1_ur1w5")
+next_level = "res://levels/level.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.00802053, -0.347034, 0.937818, -0.00296784, 0.937853, 0.347021, -0.999963, -4.65678e-10, -0.00855202, 3.5812, 2.93594, 0.0136283)
+transform = Transform3D(-0.00744264, -0.49256, 0.870247, -0.00421239, 0.870278, 0.492542, -0.999963, -4.65678e-10, -0.00855202, 4.77095, 6.15691, 0.0136283)
 top_level = true
 
-[node name="Node3D" parent="." instance=ExtResource("2_uubsy")]
+[node name="Node3D" parent="." instance=ExtResource("2_k7he8")]
 transform = Transform3D(0.971669, 0, 0.236346, 0, 1, 0, -0.236346, 0, 0.971669, 0, 2.13614, 3.94945)
+
+[node name="moivng_hazard" parent="." groups=["Lose"] instance=ExtResource("3_t12r8")]
+final_destination = Vector3(0, 4, 0)
+how_long = 4.0
