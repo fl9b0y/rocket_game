@@ -2,6 +2,7 @@ extends RigidBody3D
 @onready var death: AudioStreamPlayer = $death
 @onready var success: AudioStreamPlayer = $success
 @onready var engine_thrust: AudioStreamPlayer3D = $engine_thrust
+@onready var booster_particles: GPUParticles3D = $BoosterParticles
 
 
 
@@ -11,8 +12,10 @@ func movement(delta) ->void:
 		apply_central_force(basis.y*delta*1000)
 		if engine_thrust.playing == false:
 			engine_thrust.play()
+			booster_particles.emitting = true
 	else:
 		engine_thrust.stop()
+		booster_particles.emitting = false
 	if Input.is_action_pressed("ui_down"):
 		apply_central_force(-basis.y*delta*1000)
 	if (Input.is_action_pressed("ui_right") )and (Input.is_action_pressed("ui_up")) :
