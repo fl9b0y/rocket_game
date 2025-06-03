@@ -3,6 +3,10 @@ extends RigidBody3D
 @onready var success: AudioStreamPlayer = $success
 @onready var engine_thrust: AudioStreamPlayer3D = $engine_thrust
 @onready var booster_particles: GPUParticles3D = $BoosterParticles
+@onready var left_booster: GPUParticles3D = $left_booster
+@onready var r_rocket_booster: GPUParticles3D = $r_rocket_booster
+@onready var explosion_particles: GPUParticles3D = $ExplosionParticles
+@onready var success_particles: GPUParticles3D = $SuccessParticles
 
 
 
@@ -20,8 +24,14 @@ func movement(delta) ->void:
 		apply_central_force(-basis.y*delta*1000)
 	if (Input.is_action_pressed("ui_right") )and (Input.is_action_pressed("ui_up")) :
 		apply_torque(-basis.z*delta*1000)
+		r_rocket_booster.emitting = true
+	else:
+		r_rocket_booster.emitting = false
 	if ( Input.is_action_pressed("ui_left")) and (Input.is_action_pressed("ui_up")):
 		apply_torque(basis.z*delta*1000)
+		left_booster.emitting = true
+	else:
+		left_booster.emitting = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +52,7 @@ func _on_body_entered(body: Node) -> void:
 func win_sequecne(next_level:String)-> void:
 	print("you win ")
 	success.play()
+	success_particles.emitting = true
 	is_transitioning = true
 	set_process(false)
 	var tween = create_tween()
@@ -51,6 +62,7 @@ func win_sequecne(next_level:String)-> void:
 	
 func crash_sequence()-> void:
 	print("you lose ")
+	explosion_particles.emitting = true
 	death.play()
 	is_transitioning = true
 	set_process(false)
